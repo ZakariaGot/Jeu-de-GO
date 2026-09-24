@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Règles du Go</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-container">
+        <img src="images/goban.png" alt="Goban" class="corner-goban">
+        <h1 class="page-title">Règles du Jeu de Go</h1>
+        <div class="sommaire">
+            <h3>📋 Sommaire</h3>
+            <ol>
+                <li><a href="#plateau">le plateau de jeu</a></li>
+                <li><a href="#placement">Placement des pierres</a></li>
+                <li><a href="#libertes">Libertés et groupes</a></li>
+                <li><a href="#capture">Règle de la capture</a></li>
+                <li><a href="#ko">Règle de Ko</a></li>
+                <li><a href="#fin">Fin de partie</a></li>
+                <li><a href="#comptage">Comptage des points</a></li>
+                <li><a href="#handicap">Parties à handicap</a></li>
+                <li><a href="#lexique">Lexique</a></li>
+            </ol>
+        </div>    
+        <h2 id="plateau">1. Le plateau de jeu (Goban)</h2>
+        <p>Le go se joue sur un plateau appelé <strong>goban</strong>. Les joueurs posent leurs pierres sur les <strong>intersections</strong> des lignes, et non dans les cases.</p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Taille</th>
+                    <th>Intersections</th>
+                    <th>Hochi</th>
+                    <th>Niveau recommandé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9 x 9</td>
+                    <td>81</td>
+                    <td>5</td>
+                    <td>Débutants</td>
+                </tr>
+                <tr>
+                   <td>13 x 13</td>
+                    <td>169</td>
+                    <td>4</td>
+                    <td>Intermédiaires</td> 
+                </tr>
+                <tr>
+                   <td>19 x 19</td>
+                    <td>361</td>
+                    <td>9</td>
+                    <td>Parties complètes</td> 
+                </tr>
+            </tbody>
+        </table>
+        <div class="info-box">
+            <p><strong>Hochi :</strong> Intersections marquées d'un point plus gros, utilisées pour les pierres de handicap et comme repères visuels.</p>
+        </div>
+        <img src="images/regles/goban 9x9.png" alt="Goban 9x9 avec ses 5 hochi" class="histoire-img">
+        <p class="description-img">Goban 9x9 avec ses 5 hochi</p> 
+
+        <h2 id="placement">2. Placement des pierres</h2>
+        <p>La partie commence avec un plateau vide. Les joueurs posent à tour de rôle une pierre de leur couleur sur une intersection libre. <strong>Noir joue toujours en premier.</strong></p>
+        <p>Une fois posées, les pierres ne se déplacent plus et ne peuvent être retirées que si elles sont capturées.</p>
+        <div class="info-box"><p><strong>Interdit :</strong> Un joueur ne peut pas poser une pierre sur une intersection sans liberté, sauf si ce coup capture des pierres adverses.</p></div>
+
+        <h2 id="libertes">3. Libertés et groupes</h2>
+        <p>Deux intersections sont <strong>voisines</strong> si elles sont adjacentes horizontalement ou verticalement. La diagonale ne compte pas.</p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Nombre de voisins</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Intersection intérieure</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Intersection de bord</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Intersection de coin</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Le <strong>nombre de libertés</strong> d'une pierre ou d'un groupe est le nombre d'intersections libres voisines.</p>
+        <p>Deux pierres de même couleur adjacentes forment un <strong>groupe</strong>. Les libertés du groupe sont toutes les intersections libres autour de lui.</p>
+        <img src="images/regles/grp 3 pieres.png" alt="Groupe de 3 pierres noires" class="histoire-img">
+        <p class="description-img">Groupe de 3 pierres noires — libertés en vert</p>
+
+        <h2 id="capture">4. Règle de la capture</h2>
+        <p>Quand un coup supprime la <strong>dernière liberté</strong> d'un groupe adverse, toutes ses pierres sont capturées et retirées du goban. Elles deviennent les <strong>prisonniers</strong> du joueur.</p>
+        <img src="images/regles/regle 4.png" alt="Le coup rouge capture le groupe blanc qui n'a plus de liberté" class="histoire-img">
+        <p class="description-img">Le coup rouge capture le groupe blanc qui n'a plus de liberté</p> 
+        <div class="info-box"><p><strong>Les prisonniers : </strong> seront soustraits du score de l'adversaire en fin de partie.</p></div>
+
+        <h2 id="ko">5. Règle du Ko</h2>
+        <p>Le <strong>ko</strong> (« éternité ») empêche les parties infinies. Sans cette règle, deux joueurs pourraient se recapturer la même pierre indéfiniment.</p>
+        <div class="info-box">
+            <p><strong>Interdit :</strong> Jouer un coup qui recrée un état du goban déjà rencontré dans la partie.</p>
+        </div><br>
+        <div class="info-box"><p>En pratique, après une capture de ko, l'adversaire doit jouer ailleurs avant de pouvoir reprendre.</p></div>
+
+        <h2 id="fin">6. Fin de partie</h2>
+        <p>À chaque tour, un joueur peut <strong>poser une pierre</strong> ou <strong>passer</strong>. En passant, il donne un prisonnier à l'adversaire.</p>
+        <div class="info-box"><p><strong>Fin :</strong> La partie se termine quand les <strong>deux joueurs passent consécutivement</strong>. On procède alors au comptage des points.</p></div>
+
+        <h2 id="comptage">7. Comptage des points</h2>
+        <p>La méthode utilisée est la méthode française, en 4 étapes :</p>
+        <ol class="etapes">
+            <li><span class="num">1</span> <strong>Retirer les pierres mortes.</strong> Les pierres isolées dans le territoire adverse sont retirées et ajoutées aux prisonniers de l'adversaire.</li>
+            <li><span class="num">2</span> <strong>Compter les territoires.</strong> Chaque intersection libre entourée par ses propres pierres vaut 1 point.</li>
+            <li><span class="num">3</span> <strong>Soustraire les prisonniers.</strong> On déduit du score le nombre de prisonniers capturés par l'adversaire.</li>
+            <li><span class="num">4</span> <strong>Ajouter le komi à Blanc.</strong> Bonus entre 0,5 et 7,5 points pour compenser le premier coup de Noir.</li>
+        </ol>
+
+        <h2 id="handicap">8. Parties à handicap</h2>
+        <p>Le joueur le plus faible (Noir) place des pierres d'avance sur les <strong>hochi</strong> avant la partie. Blanc joue alors en premier.</p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Goban</th>
+                    <th>Pierres de handicap</th>
+                    <th>Komi avec handicap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9 x 9</td>
+                    <td>2 à 4</td>
+                    <td>0.5</td>
+                </tr>
+                <tr>
+                    <td>13 x 13</td>
+                    <td>2 à 5</td>
+                    <td>0.5</td>
+                </tr>
+                <tr>
+                    <td>19 x 19</td>
+                    <td>2 à 9</td>
+                    <td>0.5</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="lexique">9. Lexique</h2>
+        <ul>
+            <li><strong>Goban :</strong> plateau de jeu</li>
+            <li><strong>Pierre :</strong> pion du joueur (noir ou blanc)</li>
+            <li><strong>Hochi :</strong> intersections marquées pour les pierres de handicap</li>
+            <li><strong>Liberté :</strong> intersection libre adjacente à une pierre ou un groupe</li>
+            <li><strong>Groupe :</strong> pierres de même couleur reliées par adjacence</li>
+            <li><strong>Prisonnier :</strong> pierre capturée, déduite du score en fin de partie</li>
+            <li><strong>Ko :</strong> règle interdisant de revenir à un état antérieur du goban</li>
+            <li><strong>Komi :</strong> bonus de points donné à Blanc</li>
+            <li><strong>Territoire :</strong> intersections libres entourées par les pierres d'un joueur</li>
+            <li><strong>Pierre morte :</strong> pierre isolée dans le territoire adverse</li>
+            <li><strong>Joseki :</strong> séquence d'ouverture classique</li>
+        </ul>
+
+        <div class="btn-row">
+            <a href="Informations.html" class="go-btn informations-btn">Retour</a>
+            <a href="game.html" class="go-btn play-btn">Jouer</a>
+        </div>
+    </div>
+</body>
+</html>

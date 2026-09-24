@@ -1,0 +1,332 @@
+/* --- Style global --- */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #d8b27c, #b8874a);
+    font-family: "Georgia", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+/* --- Conteneurs principaux --- */
+
+.home-container,
+.page-container {
+    width: min(1000px, 92vw);
+    background-color: rgba(255, 248, 230, 0.88);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+/* --- Image goban en haut à droite --- */
+
+.corner-goban {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 160px;
+    height: auto;
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,0.22));
+}
+
+/* --- Titres --- */
+
+.home-title,
+.page-title {
+    font-size: 3rem;
+    color: #2b2b2b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- Texte d'accueil --- */
+
+.home-text {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* --- Textes des pages internes --- */
+
+.page-container p,
+.page-container li {
+    color: #333;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    text-align: left;
+}
+
+.page-container h2 {
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: #2b2b2b;
+    text-align: left;
+}
+
+/* --- Boutons --- */
+
+.go-btn {
+    display: inline-block;
+    width: 250px;
+    margin: 12px auto;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+/* Bouton noir */
+.play-btn {
+    background-color: #111111;
+    color: white;
+}
+
+.play-btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* Bouton blanc */
+.informations-btn {
+    background-color: #f5f5f5;
+    color: #111;
+    border: 2px solid #111;
+}
+
+.informations-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+/* Ligne de boutons centrée */
+.btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+/* --- Page informations --- */
+
+/* Texte sous le titre */
+.menu-subtitle {
+    max-width: 720px;
+    margin: 0 auto 25px auto;
+    color: #444;
+    font-size: 1.15rem;
+    text-align: center;
+}
+
+/* Grille de cartes */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+/* Carte individuelle */
+.menu-card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 18px;
+    padding: 22px 18px;
+    text-decoration: none;
+    color: #222;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transition: 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-height: 140px;
+}
+
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* Icône de la carte */
+.menu-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+}
+
+.icon-black {
+    background: #111;
+    color: #fff;
+}
+
+.icon-white {
+    background: #f5f5f5;
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.icon-wood {
+    background: #b8874a;
+    color: #1b1b1b;
+}
+
+/* Titre et texte de la carte */
+.menu-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.menu-text {
+    margin: 0;
+    color: #444;
+    line-height: 1.5;
+    font-size: 0.98rem;
+}
+
+/* --- Page histoire --- */
+
+/* Images */
+.histoire-img {
+    display: block;
+    margin: 25px auto;
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Page règles --- */
+
+/* Sommaire */
+.sommaire {
+    background-color: rgba(184, 135, 74, 0.15);
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #b8874a;
+    text-align: left;
+}
+
+.sommaire a {
+    color: #7a4f1a;
+    text-decoration: none;
+}
+
+.sommaire a:hover {
+    text-decoration: underline;
+}
+
+/* Tableaux */
+.table thead tr th {
+    background-color: #b8874a !important;
+    color: white !important;
+}
+
+.table tbody tr td {
+    background-color: rgba(255, 248, 230, 0.88) !important;
+}
+
+.page-container p strong {
+    font-weight: bold;
+}
+
+/* Boîte d'information */
+.info-box {
+    background-color: rgba(184, 135, 74, 0.15);
+    border-left: 4px solid #b8874a;
+    padding: 12px 15px;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Description sous les images */
+.description-img {
+    text-align: center !important;
+    color: #666 !important;
+    font-size: 0.9rem !important;
+}
+
+/* Numéros de la liste comptage */
+.num {
+    background: #b8874a;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-weight: bold;
+}
+
+.etapes {
+    list-style: none;
+    padding: 0;
+}
+
+/* --- Page jeu --- */
+
+/* Bouton nouvelle partie */
+.btn-success {
+    background-color: #111 !important;
+    border-color: #111 !important;
+    color: white !important;
+}
+
+/* Bouton passer */
+.btn-secondary {
+    background-color: #f5f5f5 !important;
+    border-color: #111 !important;
+    color: #111 !important;
+}
+
+/* Bouton fin de partie */
+.btn-danger {
+    background-color: #b8874a !important;
+    border-color: #b8874a !important;
+    color: white !important;
+}
+
+/* Menu choix IA caché par défaut */
+.choix-ia {
+    display: none;
+    margin-top: 5px;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 850px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-container,
+    .page-container {
+        padding: 35px 22px;
+    }
+
+    .home-title,
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .go-btn {
+        width: 100%;
+        max-width: 320px;
+    }
+}
